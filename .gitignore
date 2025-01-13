@@ -9,3 +9,13 @@
 # Cloudflare
 .mf
 .wrangler
+
+
+# Editor directories and files
+!.vscode/extensions.json
+.idea
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
