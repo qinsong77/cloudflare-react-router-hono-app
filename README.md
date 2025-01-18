@@ -2,6 +2,28 @@
 
 crated by `pnpm dlx create-react-router@latest --template remix-run/react-router-templates/cloudflare-d1`
 
+Check [https://rrv7-hono-app.wakershadow.workers.dev/](https://rrv7-hono-app.wakershadow.workers.dev/) for demo
+
+## Features
+
+- Enable Cloudflare Workers, D1 and KV work with Hono server, react router and server all on local well, powered by this `getPlatformProxy` from wrangler, refer [dev-platform middleware](./server/middleware/dev-platform.ts)
+- No extra vite packages for local development, totally self-control, check the [server.js](./server.js)
+- Hono
+- React Router 7
+- Cloudflare works, D1 and KV
+- Drizzle orm with D1
+
+Because of the connection between Hono and rrv7, that means we can pass the Hono Context,
+what we can get in Hono server, we can pass it to React Router loader easily.
+
+## Getting Started
+
+- `pnpm install`
+- Refer to `wrangler.example.toml` and create `wrangler.toml`, add yourself config; Refer to `.env.example` and create `.env`,
+- `pnpm run db:generate`
+- `pnpm run db:migrate-local`
+- `pnpm run dev`
+
 ---
 
 # Welcome to React Router!

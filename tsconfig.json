@@ -1,14 +1,17 @@
 {
   "files": [],
   "references": [
-    { "path": "./tsconfig.node.json" },
-    { "path": "./tsconfig.cloudflare.json" }
+    { "path": "./tsconfig.config.json" },
+    { "path": "./tsconfig.app.json" }
   ],
   "compilerOptions": {
-    "checkJs": true,
-    "verbatimModuleSyntax": true,
+    "moduleResolution": "bundler",
     "skipLibCheck": true,
     "strict": true,
-    "noEmit": true
+    "noEmit": true,
+    "baseUrl": ".",
+    "paths": {
+      "~/*": ["./app/*"]
+    }
   }
 }

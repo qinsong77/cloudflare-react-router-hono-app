@@ -13,7 +13,11 @@ import tseslint from "typescript-eslint"
 export default tseslint.config(
   { ignores: ["dist", "app/components/ui", "build", ".react-router", "e2e"] },
   {
-    files: ["app/**/*.{ts,tsx}", "server/**/*.{ts,tsx}"],
+    files: [
+      "app/**/*.{ts,tsx}",
+      "server/**/*.{ts,tsx}",
+      "shared/**/*.{ts,tsx}",
+    ],
     settings: { react: { version: "18.3" } },
     extends: [
       js.configs.recommended,
@@ -31,7 +35,7 @@ export default tseslint.config(
         ...globals.node,
       },
       parserOptions: {
-        project: ["./tsconfig.vite.json", "./tsconfig.app.json"],
+        project: ["./tsconfig.app.json"],
         tsconfigRootDir: import.meta.dirname,
       },
     },
@@ -55,12 +59,20 @@ export default tseslint.config(
       "react-compiler/react-compiler": "error",
 
       // custom
+      "@typescript-eslint/consistent-type-imports": [
+        "error",
+        {
+          prefer: "type-imports",
+          disallowTypeAnnotations: true,
+        },
+      ],
       "@typescript-eslint/no-non-null-assertion": "off",
       "@typescript-eslint/no-confusing-void-expression": "off",
       "@typescript-eslint/consistent-type-definitions": "off",
       "@typescript-eslint/triple-slash-reference": "off",
       ...eslintConfigPrettier.rules,
       "prettier/prettier": ["error", {}, { usePrettierrc: true }],
+      "@typescript-eslint/no-misused-promises": "off",
     },
   }
 )
