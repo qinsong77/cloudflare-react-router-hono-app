@@ -7,7 +7,7 @@ Check [https://rrv7-hono-app.wakershadow.workers.dev/](https://rrv7-hono-app.wak
 ## Features
 
 - Enable Cloudflare Workers, D1 and KV work with Hono server, react router and server all on local well, powered by this `getPlatformProxy` from wrangler, refer [dev-platform middleware](./server/middleware/dev-platform.ts)
-- No extra vite packages for local development, totally self-control, check the [server.js](./server.js)
+- No extra vite packages for local development, totally self-control, check the [dev-server.js](./dev-server.js)
 - Hono
 - React Router 7
 - Cloudflare works, D1 and KV

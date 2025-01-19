@@ -8,7 +8,7 @@
     "db:generate": "dotenv -- drizzle-kit generate ",
     "db:migrate-local": "wrangler d1 migrations apply --local DB",
     "db:migrate-production": "dotenv -- drizzle-kit migrate",
-    "dev": "node server.js | pino-pretty",
+    "dev": "node dev-server.js | pino-pretty",
     "build": "react-router build",
     "start": "wrangler dev",
     "typegen:cf": "wrangler types",
