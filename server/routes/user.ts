@@ -1,15 +1,14 @@
-import { Hono } from "hono"
-import { HTTPException } from "hono/http-exception"
+import { Hono } from 'hono'
+import { HTTPException } from 'hono/http-exception'
 
-import { getDrizzleD1Client } from "~server/d1/getDrizzleD1Client"
-import type { AuthAppType } from "~server/type/hono"
-
-import { authMiddleware } from "../middleware/auth"
+import { getDrizzleD1Client } from '../d1/getDrizzleD1Client'
+import { authMiddleware } from '../middleware/auth'
+import type { AuthAppType } from '../type/hono'
 
 const app = new Hono<AuthAppType>()
-  .use("*", authMiddleware)
-  .get("/profile", async (c) => {
-    const userInfo = c.get("userInfo")
+  .use('*', authMiddleware)
+  .get('/profile', async (c) => {
+    const userInfo = c.get('userInfo')
     const user = await getDrizzleD1Client().query.users.findFirst({
       where: (users, { eq }) => eq(users.id, userInfo.id),
       columns: {
@@ -23,7 +22,7 @@ const app = new Hono<AuthAppType>()
     })
 
     if (!user) {
-      throw new HTTPException(404, { message: "User not found" })
+      throw new HTTPException(404, { message: 'User not found' })
     }
 
     return c.json(user)

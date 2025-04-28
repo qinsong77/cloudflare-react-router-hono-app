@@ -1,8 +1,8 @@
-import type { DrizzleD1Database } from "drizzle-orm/d1"
-import type { RequestIdVariables } from "hono/request-id"
+import type { DrizzleD1Database } from 'drizzle-orm/d1'
+import type { RequestIdVariables } from 'hono/request-id'
 
-import type * as schema from "~server/d1/schema"
-import type { User } from "~server/d1/schema"
+import type * as schema from '../d1/schema'
+import type { User } from '../d1/schema'
 
 type Variables = RequestIdVariables & {
   drizzle: DrizzleD1Database<typeof schema>

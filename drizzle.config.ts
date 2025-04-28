@@ -1,10 +1,10 @@
-import type { Config } from "drizzle-kit"
+import type { Config } from 'drizzle-kit'
 
 export default {
-  out: "./migration/sqlite",
-  schema: "./server/d1/schema.ts",
-  dialect: "sqlite",
-  driver: "d1-http",
+  out: './migration/sqlite',
+  schema: './server/d1/schema.ts',
+  dialect: 'sqlite',
+  driver: 'd1-http',
   dbCredentials: {
     databaseId: process.env.CLOUDFLARE_DATABASE_ID!,
     accountId: process.env.CLOUDFLARE_ACCOUNT_ID!,

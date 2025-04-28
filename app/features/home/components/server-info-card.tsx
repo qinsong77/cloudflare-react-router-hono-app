@@ -1,7 +1,7 @@
-import { CloudIcon, FileTextIcon, ServerIcon, StarIcon } from "lucide-react"
+import { CloudIcon, FileTextIcon, ServerIcon, StarIcon } from 'lucide-react'
 
-import { Card, CardContent, CardHeader, CardTitle } from "~/components/ui/card"
-import { useLandingIndexLoaderData } from "~/routes/_landing._index"
+import { Card, CardContent, CardHeader, CardTitle } from '~/components/ui/card'
+import { useLandingIndexLoaderData } from '~/routes/_landing._index'
 
 export default function ServerInfoCard() {
   const { requestId, valueFromCloudflare, text, numbers } =
@@ -10,32 +10,32 @@ export default function ServerInfoCard() {
   const items = [
     {
       icon: ServerIcon,
-      title: "Request Id from Hono context",
+      title: 'Request Id from Hono context',
       value: requestId,
-      className: "text-blue-500",
+      className: 'text-blue-500',
     },
     {
       icon: CloudIcon,
-      title: "Cloudflare Variable",
+      title: 'Cloudflare Variable',
       value: valueFromCloudflare,
-      className: "text-orange-500",
+      className: 'text-orange-500',
     },
     {
       icon: FileTextIcon,
-      title: "Server Loader Data",
+      title: 'Server Loader Data',
       value: text,
-      className: "text-green-500",
+      className: 'text-green-500',
     },
     {
       icon: StarIcon,
-      title: "Random Number from external API",
-      value: numbers.join(", "),
-      className: "text-yellow-500",
+      title: 'Random Number from external API',
+      value: numbers.join(', '),
+      className: 'text-yellow-500',
     },
   ]
 
   return (
-    <section className="w-full bg-gradient-to-br from-purple-50 to-blue-50 py-12 dark:from-gray-900 dark:to-gray-800 md:py-24">
+    <section className="w-full bg-linear-to-br from-purple-50 to-blue-50 py-12 md:py-24 dark:from-gray-900 dark:to-gray-800">
       <div className="container mx-auto px-4">
         <div className="mb-12 flex flex-col items-center text-center">
           <h2 className="text-2xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
@@ -59,7 +59,7 @@ export default function ServerInfoCard() {
                 </div>
               </CardHeader>
               <CardContent>
-                {item.title === "Stars" ? (
+                {item.title === 'Stars' ? (
                   <div className="flex flex-wrap gap-2">
                     {Array.from({ length: Number(item.value) }).map(
                       (_, index) => (
@@ -69,7 +69,7 @@ export default function ServerInfoCard() {
                         >
                           ★
                         </div>
-                      )
+                      ),
                     )}
                   </div>
                 ) : (

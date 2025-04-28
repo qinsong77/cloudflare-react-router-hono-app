@@ -5,19 +5,19 @@ import {
   Menu,
   RssIcon,
   UserRoundPlus,
-} from "lucide-react"
-import { useState } from "react"
-import { NavLink } from "react-router"
+} from 'lucide-react'
+import { useState } from 'react'
+import { NavLink } from 'react-router'
 
-import { ThemeSwitcher } from "~/components/theme-switcher"
-import { Button, buttonVariants } from "~/components/ui/button"
-import { Sheet, SheetContent, SheetTrigger } from "~/components/ui/sheet"
-import { siteConfig } from "~/constant"
-import { ApiClient } from "~/endpoint"
-import { useRootLoaderData } from "~/hooks/loader/use-root-loader-data"
-import { cn } from "~/lib/utils"
+import { ThemeSwitcher } from '~/components/theme-switcher'
+import { Button, buttonVariants } from '~/components/ui/button'
+import { Sheet, SheetContent, SheetTrigger } from '~/components/ui/sheet'
+import { siteConfig } from '~/constant'
+import { ApiClient } from '~/endpoint'
+import { useRootLoaderData } from '~/hooks/loader/use-root-loader-data'
+import { cn } from '~/lib/utils'
 
-import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar"
+import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar'
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -26,19 +26,19 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "../ui/dropdown-menu"
+} from '../ui/dropdown-menu'
 
 // https://www.nico.fyi/blog/tailwind-css-group-modifier-to-prevent-react-rerender
 const menuItems = [
-  { name: "Streaming", href: "/streaming" },
-  { name: "Client Page", href: "/client-page" },
-  { name: "About", href: "/about" },
+  { name: 'Streaming', href: '/streaming' },
+  { name: 'Client Page', href: '/client-page' },
+  { name: 'About', href: '/about' },
 ]
 
 const HomeNav = () => (
   <NavLink
     to="/"
-    className="mr-6 flex items-center space-x-2 bg-gradient-to-r from-pink-500 to-violet-500 bg-clip-text font-bold text-transparent hover:text-primary"
+    className="hover:text-primary mr-6 flex items-center space-x-2 bg-linear-to-r from-pink-500 to-violet-500 bg-clip-text font-bold text-transparent"
   >
     Full Stack Starter
   </NavLink>
@@ -47,7 +47,7 @@ export const Header = () => {
   const [isOpen, setIsOpen] = useState(false)
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+    <header className="bg-background/95 supports-backdrop-filter:bg-background/60 sticky top-0 z-50 w-full border-b backdrop-blur-sm">
       <div className="container mx-auto flex h-14 items-center px-4">
         <div className="mr-4 hidden md:flex">
           <HomeNav />
@@ -57,18 +57,21 @@ export const Header = () => {
                 key={item.name}
                 to={item.href}
                 className={({ isActive, isPending }) =>
-                  `group relative transition-colors hover:text-foreground/80 ${
-                    isActive ? "text-foreground" : "text-foreground/60"
-                  } ${isPending ? "animate-pulse text-primary/70 opacity-50" : ""}`
+                  `group hover:text-foreground/80 relative transition-colors ${
+                    isActive ? 'text-foreground' : 'text-foreground/60'
+                  } ${isPending ? 'text-primary/70 animate-pulse opacity-50' : ''}`
                 }
               >
                 {item.name}
-                <span className="absolute -bottom-[21px] left-0 h-[2px] w-full origin-left scale-x-0 bg-primary transition-transform duration-200 ease-out group-hover:scale-x-100" />
+                <span className="bg-primary absolute -bottom-[21px] left-0 h-[2px] w-full origin-left scale-x-0 transition-transform duration-200 ease-out group-hover:scale-x-100" />
               </NavLink>
             ))}
           </nav>
         </div>
-        <Sheet open={isOpen} onOpenChange={setIsOpen}>
+        <Sheet
+          open={isOpen}
+          onOpenChange={setIsOpen}
+        >
           <SheetTrigger asChild>
             <Button
               variant="ghost"
@@ -78,7 +81,10 @@ export const Header = () => {
               <span className="sr-only">Toggle Menu</span>
             </Button>
           </SheetTrigger>
-          <SheetContent side="left" className="w-[300px] pr-0">
+          <SheetContent
+            side="left"
+            className="w-[300px] pr-0"
+          >
             <HomeNav />
             <nav className="mt-6 flex flex-col gap-2">
               {menuItems.map((item) => (
@@ -87,7 +93,7 @@ export const Header = () => {
                   to={item.href}
                   className={({ isActive }) =>
                     `group flex items-center py-2 text-base font-medium transition-colors ${
-                      isActive ? "text-foreground" : "text-foreground/60"
+                      isActive ? 'text-foreground' : 'text-foreground/60'
                     }`
                   }
                   onClick={() => setIsOpen(false)}
@@ -108,9 +114,9 @@ export const Header = () => {
             <div
               className={cn(
                 buttonVariants({
-                  variant: "ghost",
+                  variant: 'ghost',
                 }),
-                "w-9 px-0"
+                'w-9 px-0',
               )}
             >
               {/* eslint-disable-next-line @typescript-eslint/no-deprecated */}
@@ -126,9 +132,9 @@ export const Header = () => {
             <div
               className={cn(
                 buttonVariants({
-                  variant: "ghost",
+                  variant: 'ghost',
                 }),
-                "w-9 px-0"
+                'w-9 px-0',
               )}
             >
               <RssIcon className="size-3 fill-current" />
@@ -155,7 +161,7 @@ function AuthButton() {
           </Avatar>
         </DropdownMenuTrigger>
         <DropdownMenuContent
-          className="w-[--radix-dropdown-menu-trigger-width] min-w-56 rounded-lg"
+          className="w-(--radix-dropdown-menu-trigger-width) min-w-56 rounded-lg"
           side="bottom"
           align="end"
           sideOffset={4}
@@ -208,8 +214,8 @@ function AuthButton() {
     <NavLink
       to="/sign-in"
       className={({ isActive }) =>
-        `mr-2 inline-flex items-center transition-colors hover:text-foreground/80 ${
-          isActive ? "text-foreground" : "text-foreground/60"
+        `hover:text-foreground/80 mr-2 inline-flex items-center transition-colors ${
+          isActive ? 'text-foreground' : 'text-foreground/60'
         }`
       }
     >

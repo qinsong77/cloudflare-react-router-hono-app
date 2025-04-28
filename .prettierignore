@@ -15,6 +15,7 @@ coverage
 
 app/components/ui
 worker-configuration.d.ts
+wrangler.jsonc
 
 # Ignore all HTML files:
 **/*.html

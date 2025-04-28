@@ -1,10 +1,10 @@
 // import { client } from "app/endpoint"
-import { useState } from "react"
+import { useState } from 'react'
 
-import { Button } from "~/components/ui/button"
-import { useLandingLoader } from "~/routes/_landing"
+import { Button } from '~/components/ui/button'
+import { useLandingLoader } from '~/routes/_landing'
 
-import type { Route } from "./+types/_landing.client-page"
+import type { Route } from './+types/_landing.client-page'
 
 export function clientLoader() {
   // const res = await client.api.randomnumberapi.$get()

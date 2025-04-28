@@ -1,16 +1,19 @@
-import { GalleryVerticalEnd } from "lucide-react"
-import { NavLink } from "react-router"
+import { GalleryVerticalEnd } from 'lucide-react'
+import { NavLink } from 'react-router'
 
-import placeholder from "~/assets/placeholder.png"
-import { SignUpForm } from "~/features/auth/signup-form"
+import placeholder from '~/assets/placeholder.png'
+import { SignUpForm } from '~/features/auth/signup-form'
 
 export default function SignUpPage() {
   return (
     <div className="grid min-h-svh lg:grid-cols-2">
       <div className="flex flex-col gap-4 p-6 md:p-10">
         <div className="flex justify-center gap-2 md:justify-start">
-          <NavLink to="/" className="flex items-center gap-2 font-medium">
-            <div className="flex size-6 items-center justify-center rounded-md bg-primary text-primary-foreground">
+          <NavLink
+            to="/"
+            className="flex items-center gap-2 font-medium"
+          >
+            <div className="bg-primary text-primary-foreground flex size-6 items-center justify-center rounded-md">
               <GalleryVerticalEnd className="size-4" />
             </div>
             Acme Inc.
@@ -22,7 +25,7 @@ export default function SignUpPage() {
           </div>
         </div>
       </div>
-      <div className="relative hidden bg-muted lg:block">
+      <div className="bg-muted relative hidden lg:block">
         <img
           src={placeholder}
           alt="signup-background"

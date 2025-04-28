@@ -1,20 +1,19 @@
-import { zValidator } from "@hono/zod-validator"
-import { eq, sql } from "drizzle-orm"
-import { Hono } from "hono"
-import { getCookie, setCookie } from "hono/cookie"
-import { HTTPException } from "hono/http-exception"
-import { z } from "zod"
+import { zValidator } from '@hono/zod-validator'
+import { eq, sql } from 'drizzle-orm'
+import { Hono } from 'hono'
+import { getCookie, setCookie } from 'hono/cookie'
+import { HTTPException } from 'hono/http-exception'
+import { z } from 'zod'
 
-import { getDrizzleD1Client } from "~server/d1/getDrizzleD1Client"
-import { type AuthAppType } from "~server/type/hono"
-
-import { users as usersSchema } from "../d1/schema"
-import { generateSessionId, hashPassword, verifyPassword } from "../utils/auth"
+import { getDrizzleD1Client } from '../d1/getDrizzleD1Client'
+import { users as usersSchema } from '../d1/schema'
+import { type AuthAppType } from '../type/hono'
+import { generateSessionId, hashPassword, verifyPassword } from '../utils/auth'
 
 const SESSION_DURATION = 7 * 24 * 60 * 60
 const registerSchema = z.object({
-  email: z.string().email("Invalid email address"),
-  password: z.string().min(2, "Password must be at least 2 characters"),
+  email: z.string().email('Invalid email address'),
+  password: z.string().min(2, 'Password must be at least 2 characters'),
   // .min(3, "Password must be at least 8 characters")
   // .regex(/[A-Z]/, "Password must contain at least one uppercase letter")
   // .regex(/[a-z]/, "Password must contain at least one lowercase letter")
@@ -26,9 +25,9 @@ const registerSchema = z.object({
 })
 
 const app = new Hono<AuthAppType>()
-  .post("/register", zValidator("json", registerSchema), async (c) => {
+  .post('/register', zValidator('json', registerSchema), async (c) => {
     try {
-      const { email, password } = c.req.valid("json")
+      const { email, password } = c.req.valid('json')
 
       const hashedPassword = await hashPassword(password)
       const [user] = await getDrizzleD1Client()
@@ -57,50 +56,50 @@ const app = new Hono<AuthAppType>()
         }),
         {
           expiration: Math.floor(Date.now() / 1000) + SESSION_DURATION,
-        }
+        },
       )
 
-      setCookie(c, "sessionId", sessionId, {
+      setCookie(c, 'sessionId', sessionId, {
         httpOnly: true,
-        secure: process.env.NODE_ENV === "production",
-        sameSite: "Strict",
+        secure: process.env.NODE_ENV === 'production',
+        sameSite: 'Strict',
         maxAge: SESSION_DURATION,
       })
 
       return c.json(
-        { message: "User registered successfully", success: true },
-        201
+        { message: 'User registered successfully', success: true },
+        201,
       )
     } catch (error) {
       throw new HTTPException(400, {
-        message: "Registration failed",
+        message: 'Registration failed',
         cause: error,
       })
     }
   })
   .post(
-    "/login",
+    '/login',
     zValidator(
-      "json",
+      'json',
       z.object({
-        email: z.string().email("Invalid email address"),
+        email: z.string().email('Invalid email address'),
         password: z.string(),
-      })
+      }),
     ),
     async (c) => {
-      const { email, password } = c.req.valid("json")
+      const { email, password } = c.req.valid('json')
 
       const user = await getDrizzleD1Client().query.users.findFirst({
         where: (users, { eq }) => eq(users.email, email),
       })
 
       if (!user) {
-        throw new HTTPException(401, { message: "Invalid credentials" })
+        throw new HTTPException(401, { message: 'Invalid credentials' })
       }
 
       const isValid = await verifyPassword(password, user.passwordHash)
       if (!isValid) {
-        throw new HTTPException(401, { message: "Password is incorrect" })
+        throw new HTTPException(401, { message: 'Password is incorrect' })
       }
 
       await getDrizzleD1Client()
@@ -123,26 +122,26 @@ const app = new Hono<AuthAppType>()
         }),
         {
           expiration: Math.floor(Date.now() / 1000) + SESSION_DURATION,
-        }
+        },
       )
 
-      setCookie(c, "sessionId", sessionId, {
+      setCookie(c, 'sessionId', sessionId, {
         httpOnly: true,
-        secure: process.env.NODE_ENV === "production",
-        sameSite: "Strict",
+        secure: process.env.NODE_ENV === 'production',
+        sameSite: 'Strict',
         maxAge: SESSION_DURATION,
       })
 
-      return c.json({ message: "Login successful" })
-    }
+      return c.json({ message: 'Login successful' })
+    },
   )
-  .post("/logout", async (c) => {
-    const sessionId = getCookie(c, "sessionId")
+  .post('/logout', async (c) => {
+    const sessionId = getCookie(c, 'sessionId')
     if (sessionId) {
       await c.env.KV.delete(`session:${sessionId}`)
-      setCookie(c, "sessionId", "", { maxAge: 0 })
+      setCookie(c, 'sessionId', '', { maxAge: 0 })
     }
-    return c.json({ message: "Logged out successfully" })
+    return c.json({ message: 'Logged out successfully' })
   })
 
 export default app

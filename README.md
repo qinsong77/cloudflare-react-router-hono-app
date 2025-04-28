@@ -1,12 +1,16 @@
 # Cloudflare React-router7 Hono App
 
-crated by `pnpm dlx create-react-router@latest --template remix-run/react-router-templates/cloudflare-d1`
+crated by `create cloudflare@latest cloudflare-react-router-hono-app -- --framework=react-router`
 
 Check [https://rrv7-hono-app.wakershadow.workers.dev/](https://rrv7-hono-app.wakershadow.workers.dev/) for demo
 
+## [v1](https://github.com/qinsong77/cloudflare-react-router-hono-app/tree/v1)
+
+V1 Enable Cloudflare Workers, D1 and KV work with Hono server, react router and server all by customer dev server and wrap customer `wrangler` locally.
+
 ## Features
 
-- Enable Cloudflare Workers, D1 and KV work with Hono server, react router and server all on local well, powered by this `getPlatformProxy` from wrangler, refer [dev-platform middleware](./server/middleware/dev-platform.ts)
+- Enable Cloudflare Workers, D1 and KV work with Hono server, react router and server all on local well, powered by this `getPlatformProxy` from wrangler, refer [dev-platform middleware](server/middleware/dev-platform.ts)
 - No extra vite packages for local development, totally self-control, check the [dev-server.js](./dev-server.js)
 - Hono
 - React Router 7

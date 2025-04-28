@@ -1,18 +1,18 @@
-"use client"
+'use client'
 
-import { Card, CardContent, CardHeader, CardTitle } from "~/components/ui/card"
-import { useLandingIndexLoaderData } from "~/routes/_landing._index"
+import { Card, CardContent, CardHeader, CardTitle } from '~/components/ui/card'
+import { useLandingIndexLoaderData } from '~/routes/_landing._index'
 
 const popularRepos = [
-  { name: "React", url: "https://github.com/facebook/react" },
-  { name: "Vue", url: "https://github.com/vuejs/core" },
-  { name: "Angular", url: "https://github.com/angular/angular" },
+  { name: 'React', url: 'https://github.com/facebook/react' },
+  { name: 'Vue', url: 'https://github.com/vuejs/core' },
+  { name: 'Angular', url: 'https://github.com/angular/angular' },
 ] as const
 
 export default function GitHubStars() {
   const { numbers } = useLandingIndexLoaderData()
   return (
-    <section className="w-full bg-gradient-to-br from-purple-50 to-blue-50 py-12 dark:from-gray-900 dark:to-gray-800 md:py-24 lg:py-32">
+    <section className="w-full bg-linear-to-br from-purple-50 to-blue-50 py-12 md:py-24 lg:py-32 dark:from-gray-900 dark:to-gray-800">
       <div className="container mx-auto px-4">
         <div className="mb-12 flex flex-col items-center text-center">
           <h2 className="text-2xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
@@ -68,7 +68,7 @@ export default function GitHubStars() {
                     <p className="text-sm font-medium text-gray-500 dark:text-gray-400">
                       Stars
                     </p>
-                    <p className="mt-1 bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-3xl font-bold text-transparent dark:from-purple-400 dark:to-blue-400">
+                    <p className="mt-1 bg-linear-to-r from-purple-600 to-blue-600 bg-clip-text text-3xl font-bold text-transparent dark:from-purple-400 dark:to-blue-400">
                       {numbers[index].toLocaleString()}
                     </p>
                   </div>

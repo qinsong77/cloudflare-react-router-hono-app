@@ -1,11 +1,11 @@
-import { BookOpen, Github } from "lucide-react"
+import { BookOpen, Github } from 'lucide-react'
 
-import { Button } from "~/components/ui/button"
-import { siteConfig } from "~/constant"
+import { Button } from '~/components/ui/button'
+import { siteConfig } from '~/constant'
 
 const CallToAction = () => {
   return (
-    <section className="relative overflow-hidden bg-gradient-to-r from-purple-600 to-indigo-600 dark:from-purple-950/80 dark:to-indigo-950/80">
+    <section className="relative overflow-hidden bg-linear-to-r from-purple-600 to-indigo-600 dark:from-purple-950/80 dark:to-indigo-950/80">
       <div className="container mx-auto px-4 py-20 md:px-6 md:py-32">
         <div className="flex flex-col items-center space-y-8 text-center">
           <h2 className="max-w-3xl text-3xl font-bold tracking-tighter text-white sm:text-5xl">
@@ -47,7 +47,7 @@ const CallToAction = () => {
               </a>
             </Button>
           </div>
-          <div className="mt-8 flex flex-col items-center justify-center space-y-4 text-sm text-gray-200 sm:flex-row sm:space-x-4 sm:space-y-0">
+          <div className="mt-8 flex flex-col items-center justify-center space-y-4 text-sm text-gray-200 sm:flex-row sm:space-y-0 sm:space-x-4">
             <div className="flex items-center space-x-2">
               <span className="rounded-full bg-white/10 px-4 py-1.5">
                 MIT License

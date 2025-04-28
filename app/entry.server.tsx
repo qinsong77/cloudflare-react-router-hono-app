@@ -1,7 +1,7 @@
-import { isbot } from "isbot"
-import { renderToReadableStream } from "react-dom/server"
-import type { AppLoadContext, EntryContext } from "react-router"
-import { ServerRouter } from "react-router"
+import { isbot } from 'isbot'
+import { renderToReadableStream } from 'react-dom/server'
+import type { AppLoadContext, EntryContext } from 'react-router'
+import { ServerRouter } from 'react-router'
 
 export default async function handleRequest(
   request: Request,
@@ -9,15 +9,17 @@ export default async function handleRequest(
   responseHeaders: Headers,
   routerContext: EntryContext,
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  _loadContext: AppLoadContext
+  _loadContext: AppLoadContext,
 ) {
   let shellRendered = false
-  const userAgent = request.headers.get("user-agent")
+  const userAgent = request.headers.get('user-agent')
 
-  const stream = await renderToReadableStream(
-    <ServerRouter context={routerContext} url={request.url} />,
+  const body = await renderToReadableStream(
+    <ServerRouter
+      context={routerContext}
+      url={request.url}
+    />,
     {
-      signal: request.signal,
       onError(error: unknown) {
         responseStatusCode = 500
         // Log streaming rendering errors from inside the shell.  Don't log
@@ -27,18 +29,18 @@ export default async function handleRequest(
           console.error(error)
         }
       },
-    }
+    },
   )
   shellRendered = true
 
   // Ensure requests from bots and SPA Mode renders wait for all content to load before responding
   // https://react.dev/reference/react-dom/server/renderToPipeableStream#waiting-for-all-content-to-load-for-crawlers-and-static-generation
   if ((userAgent && isbot(userAgent)) || routerContext.isSpaMode) {
-    await stream.allReady
+    await body.allReady
   }
 
-  responseHeaders.set("Content-Type", "text/html")
-  return new Response(stream, {
+  responseHeaders.set('Content-Type', 'text/html')
+  return new Response(body, {
     headers: responseHeaders,
     status: responseStatusCode,
   })
