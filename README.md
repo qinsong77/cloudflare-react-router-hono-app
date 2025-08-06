@@ -1,6 +1,8 @@
 # Cloudflare React-router7 Hono App
 
-crated by `create cloudflare@latest cloudflare-react-router-hono-app -- --framework=react-router`
+Crated by `create cloudflare@latest cloudflare-react-router-hono-app -- --framework=react-router`
+
+Refer: [Cloudflare Framework Guide - React Router (formerly Remix)](https://developers.cloudflare.com/workers/framework-guides/web-apps/react-router/)
 
 Check [https://rrv7-hono-app.wakershadow.workers.dev/](https://rrv7-hono-app.wakershadow.workers.dev/) for demo
 
