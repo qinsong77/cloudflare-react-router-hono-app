@@ -104,10 +104,10 @@ If you don't have Cloudflare resources set up yet:
    ```
 
 3. **Configure Cloudflare**
-   - Copy `wrangler.example.toml` to `wrangler.toml`
+   - Copy `wrangler.example.jsonc` to `wrangler.jsonc`
    - Update the configuration with your Cloudflare account details:
      - Replace `your-database-name` and `your-database-id` with your D1 database details
-     - Replace `your-kv-id` with your KV namespace ID
+     - Replace `your-kv-namespace-id` with your KV namespace ID
      - Update the worker name if needed
 
 4. **Start development server**

@@ -5,6 +5,7 @@
     { "path": "./tsconfig.app.json" }
   ],
   "compilerOptions": {
+    "module": "ESNext",
     "moduleResolution": "bundler",
     "skipLibCheck": true,
     "strict": true,
