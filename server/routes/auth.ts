@@ -6,13 +6,13 @@ import { HTTPException } from 'hono/http-exception'
 import { z } from 'zod'
 
 import { getDrizzleD1Client } from '../d1/getDrizzleD1Client'
-import { users as usersSchema } from '../d1/schema'
+import { users as usersSchema } from '../d1/user.sql'
 import { type AuthAppType } from '../type/hono'
 import { generateSessionId, hashPassword, verifyPassword } from '../utils/auth'
 
 const SESSION_DURATION = 7 * 24 * 60 * 60
 const registerSchema = z.object({
-  email: z.string().email('Invalid email address'),
+  email: z.email('Invalid email address'),
   password: z.string().min(2, 'Password must be at least 2 characters'),
   // .min(3, "Password must be at least 8 characters")
   // .regex(/[A-Z]/, "Password must contain at least one uppercase letter")
@@ -82,7 +82,7 @@ const app = new Hono<AuthAppType>()
     zValidator(
       'json',
       z.object({
-        email: z.string().email('Invalid email address'),
+        email: z.email('Invalid email address'),
         password: z.string(),
       }),
     ),

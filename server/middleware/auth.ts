@@ -1,7 +1,7 @@
 import { getCookie } from 'hono/cookie'
 import { createMiddleware } from 'hono/factory'
 
-import type { User } from '../d1/schema'
+import type { User } from '../d1/user.sql'
 import type { AuthAppType } from '../type/hono'
 
 export const authMiddleware = createMiddleware<AuthAppType>(async (c, next) => {
