@@ -1,6 +1,6 @@
-# Cloudflare React-router7 Hono App
+# Cloudflare React Router 7 Hono App
 
-Crated by `create cloudflare@latest cloudflare-react-router-hono-app -- --framework=react-router`
+Created by `create cloudflare@latest cloudflare-react-router-hono-app -- --framework=react-router`
 
 Refer: [Cloudflare Framework Guide - React Router (formerly Remix)](https://developers.cloudflare.com/workers/framework-guides/web-apps/react-router/)
 
@@ -8,104 +8,179 @@ Check [https://rrv7-hono-app.wakershadow.workers.dev/](https://rrv7-hono-app.wak
 
 ## [v1](https://github.com/qinsong77/cloudflare-react-router-hono-app/tree/v1)
 
-V1 Enable Cloudflare Workers, D1 and KV work with Hono server, react router and server all by customer dev server and wrap customer `wrangler` locally.
+V1 features (legacy approach):
 
-## Features
-
-- Enable Cloudflare Workers, D1 and KV work with Hono server, react router and server all on local well, powered by this `getPlatformProxy` from wrangler, refer [dev-platform middleware](server/middleware/dev-platform.ts)
+- Enable Cloudflare Workers, D1 and KV work with Hono server, react router and server all by customer dev server and wrap customer `wrangler` locally
 - No extra vite packages for local development, totally self-control, check the [dev-server.js](./dev-server.js)
-- Hono
-- React Router 7
-- Cloudflare works, D1 and KV
-- Drizzle orm with D1
+- Powered by `getPlatformProxy` from wrangler, refer [dev-platform middleware](server/middleware/dev-platform.ts)
 
-Because of the connection between Hono and rrv7, that means we can pass the Hono Context,
-what we can get in Hono server, we can pass it to React Router loader easily.
-
-## Getting Started
-
-- `pnpm install`
-- Refer to `wrangler.example.toml` and create `wrangler.toml`, add yourself config; Refer to `.env.example` and create `.env`,
-- `pnpm run db:generate`
-- `pnpm run db:migrate-local`
-- `pnpm run dev`
-
----
-
-# Welcome to React Router!
-
-A modern, production-ready template for building full-stack React applications using React Router.
+**Note**: Current version uses `@cloudflare/vite-plugin` instead of the custom dev server approach from v1.
 
 ## Features
 
-- 🚀 Server-side rendering
-- ⚡️ Hot Module Replacement (HMR)
-- 📦 Asset bundling and optimization
-- 🔄 Data loading and mutations
-- 🔒 TypeScript by default
-- 🎉 TailwindCSS for styling
-- 📖 [React Router docs](https://reactrouter.com/)
+- **Full-Stack Integration**: Seamless integration between Hono server and React Router 7
+- **Cloudflare Platform**: Native support for Cloudflare Workers, D1 Database, and KV Storage
+- **Modern Development**: Powered by `@cloudflare/vite-plugin` for seamless local development
+- **Modern Tech Stack**:
+  - React Router 7 with SSR/SSG/CSR support
+  - Hono.js for high-performance server-side logic
+  - Drizzle ORM with D1 database
+  - TypeScript throughout the entire stack
+  - Tailwind CSS with Shadcn/UI components
+- **Context Sharing**: Direct access to Hono context in React Router loaders
+- **Authentication**: Built-in authentication system with session management
+- **Database Migrations**: Automated database schema management
+- **Type Safety**: End-to-end TypeScript support with proper type generation
+
+## Tech Stack
+
+### Frontend
+
+- **React Router 7** - Full-stack web framework with SSR/SSG/CSR support
+- **React 19** - Latest React with concurrent features
+- **TypeScript** - Type-safe development
+- **Tailwind CSS** - Utility-first CSS framework
+- **Shadcn/UI** - High-quality, accessible UI components
+
+### Backend
+
+- **Hono.js** - Fast, lightweight web framework for Cloudflare Workers
+- **Cloudflare Workers** - Serverless compute platform
+- **D1 Database** - Serverless SQL database
+- **KV Storage** - Global key-value storage
+- **Drizzle ORM** - TypeScript ORM with excellent DX
+
+### Development Tools
+
+- **Vite** - Fast build tool and dev server
+- **ESLint** - Code linting and formatting
+- **Prettier** - Code formatting
+- **Husky** - Git hooks
+- **Commitlint** - Commit message linting
+- **Wrangler** - Cloudflare Workers CLI
 
 ## Getting Started
+
+### Prerequisites
+
+- Node.js 18+
+- pnpm (recommended) or npm
+- Cloudflare account (for deployment)
+
+### First-time Cloudflare Setup
+
+If you don't have Cloudflare resources set up yet:
+
+1. **Create a D1 database**
+
+   ```bash
+   wrangler d1 create your-database-name
+   ```
+
+2. **Create a KV namespace**
+
+   ```bash
+   wrangler kv:namespace create "KV"
+   ```
+
+3. **Update your `wrangler.toml`** with the generated IDs
 
 ### Installation
 
-Install the dependencies:
+1. **Install dependencies**
 
-```bash
-npm install
-```
+   ```bash
+   pnpm install
+   ```
 
-### Development
+2. **Set up the database**
 
-Run an initial database migration:
+   ```bash
+   # Generate database migrations(You can delete the migrations folder to regenerate)
+   pnpm run db:generate
 
-```bash
-npm run db:migrate
-```
+   # Apply migrations to local D1 database(replace `DB` with your database name in script)
+   pnpm run db:migrate-local
+   ```
 
-Start the development server with HMR:
+3. **Configure Cloudflare**
+   - Copy `wrangler.example.toml` to `wrangler.toml`
+   - Update the configuration with your Cloudflare account details:
+     - Replace `your-database-name` and `your-database-id` with your D1 database details
+     - Replace `your-kv-id` with your KV namespace ID
+     - Update the worker name if needed
 
-```bash
-npm run dev
-```
+4. **Start development server**
 
-Your application will be available at `http://localhost:5173`.
+   ```bash
+   pnpm run dev
+   ```
 
-## Building for Production
-
-Create a production build:
-
-```bash
-npm run build
-```
+   The application will be available at `http://localhost:5173`
 
 ## Deployment
 
-Deployment is done using the Wrangler CLI.
+To deploy your application to Cloudflare Workers:
 
-To deploy directly to production:
+1. **Build and deploy**
 
-```sh
-npx wrangler deploy
+   ```bash
+   pnpm run deploy
+   ```
+
+2. **Apply database migrations to production**
+   ```bash
+   pnpm run db:migrate-production
+   ```
+
+The application will be deployed to your Cloudflare Workers account and accessible via your worker URL.
+
+## Available Scripts
+
+### Development
+
+- `pnpm run dev` - Start development server
+- `pnpm run preview` - Preview production build locally
+
+### Database
+
+- `pnpm run db:generate` - Generate database migrations
+- `pnpm run db:migrate-local` - Apply migrations to local D1 database (replace DB with your database name)
+- `pnpm run db:migrate-production` - Apply migrations to production D1 database (replace DB with your database name)
+
+### Build & Deploy
+
+- `pnpm run build` - Build the application for production
+- `pnpm run deploy` - Build and deploy to Cloudflare Workers
+
+### Code Quality
+
+- `pnpm run lint` - Run ESLint
+- `pnpm run lint-and-format:fix` - Fix linting and formatting issues
+- `pnpm run format` - Check code formatting
+- `pnpm run format:fix` - Fix code formatting
+- `pnpm run typecheck` - Run TypeScript type checking
+
+### Type Generation
+
+- `pnpm run typegen:cf` - Generate Cloudflare Workers types
+
+## Project Structure
+
+```
+├── app/                    # React Router 7 application
+│   ├── components/         # Reusable UI components
+│   ├── features/          # Feature-based modules
+│   ├── routes/            # Route definitions
+│   └── ...
+├── server/                # Hono server application
+│   ├── routes/            # API route handlers
+│   ├── d1/               # Database schema and queries
+│   └── middleware/       # Server middleware
+├── shared/               # Shared utilities
+└── migration/            # Database migrations
 ```
 
-To deploy a preview URL:
+## License
 
-```sh
-npx wrangler versions upload
-```
-
-You can then promote a version to production after verification or roll it out progressively.
-
-```sh
-npx wrangler versions deploy
-```
-
-## Styling
-
-This template comes with [Tailwind CSS](https://tailwindcss.com/) already configured for a simple default starting experience. You can use whatever CSS framework you prefer.
-
----
-
-Built with ❤️ using React Router.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
