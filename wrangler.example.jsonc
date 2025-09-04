@@ -30,7 +30,7 @@
 			"binding": "DB",
 			"database_name": "your-database-name",
 			"database_id": "your-database-id",
-			"migrations_dir": "migration/d1"
+			"migrations_dir": "migration/sqlite"
 		}
 	]
 	// "r2_buckets": [

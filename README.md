@@ -80,10 +80,10 @@ If you don't have Cloudflare resources set up yet:
 2. **Create a KV namespace**
 
    ```bash
-   wrangler kv:namespace create "KV"
+   wrangler kv namespace create your-kv-name
    ```
 
-3. **Update your `wrangler.toml`** with the generated IDs
+3. **Update your `wrangler.toml`** with the generated IDs and names
 
 ### Installation
 

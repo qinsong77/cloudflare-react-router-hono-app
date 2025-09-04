@@ -6,8 +6,8 @@
   "scripts": {
     "prepare": "husky",
     "db:generate": "drizzle-kit generate",
-    "db:migrate-local": "wrangler d1 migrations apply --local DB",
-    "db:migrate-production": "wrangler d1 migrations apply DB --remote",
+    "db:migrate-local": "wrangler d1 migrations apply rrv7-hono-app --local",
+    "db:migrate-production": "wrangler d1 migrations apply rrv7-hono-app --remote",
     "build": "react-router build",
     "deploy": "pnpm run build && wrangler deploy",
     "dev": "react-router dev",
