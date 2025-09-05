@@ -184,14 +184,14 @@ function AuthButton() {
               <UserRoundPlus />
               Created at:
               <span className="text-md">
-                {new Date(userInfo.createdAt * 1000).toLocaleDateString()}
+                {new Date(userInfo.createdAt).toLocaleDateString()}
               </span>
             </DropdownMenuItem>
             <DropdownMenuItem>
               <Clock />
               Last Sign In:
               <span className="text-md">
-                {new Date(userInfo.lastSignInAt * 1000).toLocaleDateString()}
+                {new Date(userInfo.lastSignInAt).toLocaleDateString()}
               </span>
             </DropdownMenuItem>
           </DropdownMenuGroup>

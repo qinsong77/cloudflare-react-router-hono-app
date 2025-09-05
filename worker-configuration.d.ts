@@ -6,9 +6,6 @@ declare namespace Cloudflare {
 		KV: KVNamespace;
 		VALUE_FROM_CLOUDFLARE: "Hello from Cloudflare Vars";
 		VITE_API_URL: string;
-		CLOUDFLARE_ACCOUNT_ID: string;
-		CLOUDFLARE_TOKEN: string;
-		CLOUDFLARE_DATABASE_ID: string;
 		DB: D1Database;
 	}
 }

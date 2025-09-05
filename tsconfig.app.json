@@ -23,7 +23,7 @@
     "paths": {
       "~/*": ["./app/*"],
       "~server/*": ["./server/*"],
-      "~shared/*": ["./server/*"]
+      "~shared/*": ["./shared/*"]
     },
     "esModuleInterop": true,
     "resolveJsonModule": true

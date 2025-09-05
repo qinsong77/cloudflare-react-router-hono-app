@@ -12,7 +12,7 @@
     "deploy": "pnpm run build && wrangler deploy",
     "dev": "react-router dev",
     "preview": "pnpm run build && vite preview",
-    "typecheck": "pnpm run typegen:cf && react-router typegen && tsc -b && echo \"Types check passed\"",
+    "typecheck": "tsc -b && echo \"Types check passed\"",
     "typegen:cf": "wrangler types",
     "lint": "eslint .",
     "lint-and-format:fix": "eslint app server shared --fix && prettier . --write",
